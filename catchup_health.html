@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+     <head>
+     <meta charset="utf-8">
+     <title>catchup</title>
+     <head>
+   <script src="./chart.js/Chart.js"></script>
+   <script src="./chart.js/src/Chart.LineBar.js"></script>
+   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+   
+   <link rel="stylesheet" href="./style.css">
+
+     <style>
+
+                 body{
+                background-image:url('./image/main.png');
+                background-repeat: no-repeat;
+                background-size: 360px 615px;
+                background-position: top;
+
+              }
+
+            #select{
+              border: 1px solid #4CB9C0 ;
+              border-opacity: 0.7;
+              width : 330px;
+              height: 100px;
+              //*padding : 3px;*//
+              float : center;
+              overflow: hidden;
+             }
+
+
+            #home{
+                border-right: 1px solid #4CB9C0 ;
+                border-opacity: 0.7;
+                width: 60px;
+                height :80px;
+                padding : 10px;
+                float : left;
+                ; 
+                 }
+
+           #graph1{
+              border-right: 1px solid #4CB9C0 ;
+              border-opacity: 0.7;
+              width: 60px;
+              height :80px;
+              padding : 10px;
+              float : left;
+               }
+
+           #health1{
+              border-right: 1px solid #4CB9C0 ;
+              border-opacity: 0.7;
+              width: 60px;
+              height :80px;
+              padding : 10px;
+              float : left;
+               }
+
+
+           #setting{
+              width: 60px;
+              height :80px;
+              padding : 10px;
+              float : left;
+               }
+
+
+           .line{
+              /*margin:50px auto;*/ 
+              width : 400px;
+              height: 230px;
+              float : center;
+              margin-top: 20px;
+              margin-right: px;
+              border: 2px double;
+              border-color:rgba(76,185,192,0.5);
+            
+           }
+
+
+           canvas{
+            margin-top: 13px;
+           }
+
+          
+
+            .line2{
+                 /* margin:50px auto;*/
+                  width:400px;
+                  height: 200px;
+                  float:center;
+                  margin-bottom: 10px;
+                  border: 2px double;
+                  border-color:rgba(76,185,192,0.5);
+          }
+
+                  #text {
+         color : #EEF2F3;
+         font-weight: bold;
+         font-size : 2em;
+         font-family: "Comic Sans MS";
+         font-opacity : 0.7;
+          }
+
+        #head{
+         color : #EEF2F3;
+         font-weight: bold;
+         font-size : 15pt;
+         font-family: "Comic Sans MS"
+          }
+
+        #middle{
+          color : #EEF2F3;
+          opacity : 0.7;
+          font-family: "휴먼엽서체";
+          }
+
+
+          .light-buttons {
+              width: 40%;
+              padding-right: 33%;
+              float: center;
+            }
+
+          .button {
+            width: 9.5em;
+            display: block;
+            -webkit-border-radius: 6px;
+            -moz-border-radius: 6px;
+            -ie-border-radius: 6px;
+            border-radius: 6px;
+            padding: .48em .8em;
+            text-shadow: rgba(0,0,0,.5) 0px -1px 0px;
+            font-size: 18px;
+            font-weight: 700;
+            -webkit-transition-property: background-color;
+            -webkit-transition-duration: .15s;
+            -webkit-transition-timing-function: ease-in-out;
+            cursor: pointer;
+            text-decoration: none;
+            margin-bottom: 20px;
+          }
+          .button:active {
+            margin-top: 25px;
+            margin-bottom: 15px;
+          }
+          .button span {
+            vertical-align: middle;
+          }
+          .icon {
+            width: 26px;
+            height: 26px;
+            -webkit-border-radius: 13px;
+            -moz-border-radius: 13px;
+            -ie-border-radius: 13px;
+            border-radius: 13px;
+            background: rgba(0,0,0,.3);
+            float: right;
+            -webkit-box-shadow: 0px 3px 0px 0px rgba(0,0,0,.2) inset, 0px 0px 0px 1px rgba(255,255,255,.2);
+            -moz-box-shadow: 0px 3px 0px 0px rgba(0,0,0,.2) inset, 0px 0px 0px 1px rgba(255,255,255,.2);
+            -ie-box-shadow: 0px 3px 0px 0px rgba(0,0,0,.2) inset, 0px 0px 0px 1px rgba(255,255,255,.2);
+            box-shadow: 0px 3px 0px 0px rgba(0,0,0,.2) inset, 0px 0px 0px 1px rgba(255,255,255,.2);
+          }
+          .arrow {
+            margin: 7px 0px 0 8px;
+            -webkit-border-style: solid;
+            -moz-border-style: solid;
+            -ie-border-style: solid;
+            border-style: solid;
+            border-width:6px 6px 6px 12px;
+            width: 0;
+            height: 0;
+          }
+
+
+
+          .lightbg-blue {
+            background-color: #64a8a6;
+            color: #dafffe;
+            -webkit-box-shadow: 0px 0px 0px 1px #4e8381 inset, 0px 0px 0px 2px #74b6b4 inset, 0px 4px 0px 0px #4a7c7b, 0px 5px 0px 0px #355655, 0px 8px 0px 0px rgba(0,0,0,.15);
+            -moz-box-shadow: 0px 0px 0px 1px #4e8381 inset, 0px 0px 0px 2px #74b6b4 inset, 0px 4px 0px 0px #4a7c7b, 0px 5px 0px 0px #355655, 0px 8px 0px 0px rgba(0,0,0,.15);
+            -ie-box-shadow: 0px 0px 0px 1px #4e8381 inset, 0px 0px 0px 2px #74b6b4 inset, 0px 4px 0px 0px #4a7c7b, 0px 5px 0px 0px #355655, 0px 8px 0px 0px rgba(0,0,0,.15);
+            box-shadow: 0px 0px 0px 1px #4e8381 inset, 0px 0px 0px 2px #74b6b4 inset, 0px 4px 0px 0px #4a7c7b, 0px 5px 0px 0px #355655, 0px 8px 0px 0px rgba(0,0,0,.15);
+          }
+          .lightbg-blue:hover {
+            background-color: #73c2c0;
+          }
+          .lightbg-blue:active {
+            background-color: #5a9896;
+            -webkit-box-shadow: 0px 0px 0px 1px #589391 inset, 0px 0px 0px 2px #65a9a7 inset, 0px 1px 0px 0px #355655, 0px 3px 0px 0px rgba(0,0,0,.15);
+            -moz-box-shadow: 0px 0px 0px 1px #589391 inset, 0px 0px 0px 2px #65a9a7 inset, 0px 1px 0px 0px #355655, 0px 3px 0px 0px rgba(0,0,0,.15);
+            -ie-box-shadow: 0px 0px 0px 1px #589391 inset, 0px 0px 0px 2px #65a9a7 inset, 0px 1px 0px 0px #355655, 0px 3px 0px 0px rgba(0,0,0,.15);
+            box-shadow: 0px 0px 0px 1px #589391 inset, 0px 0px 0px 2px #65a9a7 inset, 0px 1px 0px 0px #355655, 0px 3px 0px 0px rgba(0,0,0,.15);
+          }
+          .lightbg-blue .arrow {
+            border-color: transparent transparent transparent #74b6b4;
+          }
+          
+          
+
+                
+
+     </style>
+
+       </head>
+
+      
+
+
+    <body>
+
+     <center>
+
+         <div id ="main" style="
+         /*padding-top:50px; */
+         margin-top: 30px;
+         border : 5px double #4CB9C0;
+         height: 400px;
+         width: 330px;
+        ">
+         <br>
+         <br>
+         <br>
+         
+
+
+        
+        <section class="light-buttons">
+          <div class="right1" style="margin-left:20px;">
+            <a href="http://tvcast.naver.com/v/968388" class="button lightbg-blue clearfix">
+            <span>YOGA</span>
+            <div class="icon">
+                <div class="arrow"></div>
+            </div>
+            </a> 
+          </div>
+        </section>
+
+          <BR>
+            <br>
+
+        <section class="light-buttons">
+          <div class="right2" style="margin-left:20px;">
+            <a href="http://tvcast.naver.com/v/197381" class="button lightbg-blue clearfix">
+            <span>PILATES</span>
+            <div class="icon">
+                <div class="arrow"></div>
+            </div>
+            </a> 
+          </div>
+          </section>
+
+          <BR>
+          <BR>
+          
+            <section class="light-buttons">
+            <div class="right3 m" style="margin-left:20px;">
+            <a href="http://tvcast.naver.com/v/1010926" class="button lightbg-blue clearfix">
+            <span>WEIGHT</span>
+            <div class="icon">
+                <div class="arrow"></div>
+            </div>
+            </a> 
+          </div>
+          </section>
+
+
+
+
+
+        </section>
+    
+         </div>
+   
+
+       <br>
+           &nbsp; 
+
+
+
+             <div id ="select">
+            
+            <div id="home"
+            style ="background:url('./image/home.png');
+            background-repeat:no-repeat;
+            background-position: center;
+            background-size: 60px,55px;
+            cursor:pointer;
+            background-margin-top: 7px;
+            margin-top: 7px;"
+            onclick ="location.href='catchup_alarm.php'">
+            </div>
+
+             <div id="graph1"
+            style ="background:url('./image/graph.png');
+            background-repeat:no-repeat;
+            background-position: center;
+            background-size: 70px,75px;
+            background-margin-top: 7px;
+            margin-top: 7px;
+            cursor:pointer;"
+            onclick ="location.href='catchup_graph2.php'">
+            </div>
+
+
+            <div id="health1"
+            style ="background:url('./image/health.png');
+            background-repeat:no-repeat;
+            background-position: center;
+            background-size: 75px,120px;
+            background-margin-top: 10px;
+            cursor:pointer;
+            margin-top: 10px;"
+            onclick ="location.href='catchup_health.html'">
+            </div>
+
+
+            <div id="setting"
+            style ="background:url('./image/setting.png');
+            background-repeat:no-repeat;
+            background-position: center;
+            background-size: 70px,70px;
+            background-margin-top: 5px;
+            background-margin-left: 10px;
+            margin-top: 7px;
+            cursor:pointer;"
+            onclick ="location.href='catchup_setting.html'">
+            </div> 
+            
+         
+      </div> 
+
+</center>      
+</body>
+</html>

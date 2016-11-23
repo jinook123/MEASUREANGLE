@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+     <head>
+     <meta charset="utf-8">
+     <title>catchup</title>
+     <head>
+   <script src="./chart.js/Chart.js"></script>
+   <script src="./chart.js/src/Chart.LineBar.js"></script>
+   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+   
+   <link rel="stylesheet" href="./style.css">
+
+     <style>
+
+                   body{
+                background-image:url('./image/main.png');
+                background-repeat: no-repeat;
+                background-size: 360px 615px;
+                background-position: top;
+
+              }
+
+            #select{
+              border: 1px solid #4CB9C0 ;
+              border-opacity: 0.7;
+              width : 330px;
+              height: 100px;
+              //*padding : 3px;*//
+              float : center;
+              overflow: hidden;
+             }
+
+
+            #home{
+                border-right: 1px solid #4CB9C0 ;
+                border-opacity: 0.7;
+                width: 60px;
+                height :80px;
+                padding : 10px;
+                float : left;
+                ; 
+                 }
+
+           #graph1{
+              border-right: 1px solid #4CB9C0 ;
+              border-opacity: 0.7;
+              width: 60px;
+              height :80px;
+              padding : 10px;
+              float : left;
+               }
+
+           #health1{
+              border-right: 1px solid #4CB9C0 ;
+              border-opacity: 0.7;
+              width: 60px;
+              height :80px;
+              padding : 10px;
+              float : left;
+               }
+
+
+           #setting{
+              width: 60px;
+              height :80px;
+              padding : 10px;
+              float : left;
+               }
+
+
+           .line{
+              /*margin:50px auto;*/ 
+              width : 400px;
+              height: 230px;
+              float : center;
+              margin-top: 20px;
+              margin-right: px;
+              border: 2px double;
+              border-color:rgba(76,185,192,0.5);
+            
+           }
+
+
+           canvas{
+            margin-top: 13px;
+           }
+
+          
+
+            .line2{
+                 /* margin:50px auto;*/
+                  width:400px;
+                  height: 200px;
+                  float:center;
+                  margin-bottom: 10px;
+                  border: 2px double;
+                  border-color:rgba(76,185,192,0.5);
+          }
+
+                  
+        #text {
+         color : #EEF2F3;
+         font-weight: bold;
+         font-size : 2em;
+         font-family: "Comic Sans MS";
+         font-opacity : 0.7;
+          }
+
+        #head{
+         color : #EEF2F3;
+         font-weight: bold;
+         font-size : 15pt;
+         font-family: "Comic Sans MS"
+          }
+
+        #middle{
+          color : #EEF2F3;
+          opacity : 0.7;
+          font-family: "휴먼엽서체";
+          }
+
+
+          
+
+     </style>
+
+       </head>
+
+      
+
+
+    <body>
+
+     <center>
+
+       <div id ="main" style="
+         /*padding-top:50px; */
+         margin-top: 30px;
+         border : 5px double #4CB9C0;
+         height: 400px;
+         width: 330px;
+        ">
+
+
+        <div id ="content" style="overflow-y:scroll; width:330px;height:400px;" >
+
+                 <div style="
+                 width: 300px;
+                 height: 300px;">
+                 
+                 <br>
+                 <br>
+
+                 <image src = "./image/right.png" width ="250" height="250" >
+
+                 </div>
+
+                 <br>
+                 <br>
+
+                 <p id="text">
+                 # Basic Function 1
+                 </p>
+
+                <p id= "head">
+                ('SIT UP' 소개)
+                </p>
+                 
+
+                 <div style ="
+                 margin-left: 90px;
+                 margin-right: 90px;">
+
+                 <p id = "middle">
+
+                  자세는 사람의 몸에서 중요한 역할을 차지하여 옳지 않은 자세는 
+                  <br>
+                  몸의 균형이 깨지게 되어 허리와 목 등에 통증을 유발시킨다.
+                  <br>
+                 이러한 문제점을 해결하여 사람들의 바른 자세를 유도하여
+                 <br> 
+                 교정을 하고, 더 나아가 사용자는 바른 자세에서 오는 자신감과,
+                 <br>
+                 자신감에서 오는 만족감으로 삶의 질을 더욱 높일 수 있다.
+
+                <br> 
+                <br>
+
+                  이와 비슷한 특성을 가진 자세 교정 웨어러블 기기, 물리적인 
+                  <br>
+                  의자는 몸에 착용해야한다는 불편함, 앉아 있는 자세가 옳은 자세인지 미판단 되는 문제점을 가지고 있어 상용화에는 문제가 있다.
+
+                <br>
+                
+
+
+              <p id="last" style ="color : #EEF2F3;
+                 font-weight: bold;
+                 font-size : 14pt;
+                 font-family: "Comic Sans MS";
+                 ">
+                 
+                실시간으로 보여지는 자세와 축적된 데이터를 통해 자세의 교정, 비교하는 시스템인 ‘Sit-Up'은 자세 교정의 혁신이 될 것이다.
+
+               </p>
+
+                </p>
+                </div>
+
+                
+
+
+              </div>
+
+    
+         </div>
+   
+
+       <br>
+           &nbsp; 
+
+
+
+             <div id ="select">
+            
+            <div id="home"
+            style ="background:url('./image/home.png');
+            background-repeat:no-repeat;
+            background-position: center;
+            background-size: 60px,55px;
+            cursor:pointer;
+            background-margin-top: 7px;
+            margin-top: 7px;"
+            onclick ="location.href='catchup_alarm.php'">
+            </div>
+
+             <div id="graph1"
+            style ="background:url('./image/graph.png');
+            background-repeat:no-repeat;
+            background-position: center;
+            background-size: 70px,75px;
+            background-margin-top: 7px;
+            margin-top: 7px;
+            cursor:pointer;"
+            onclick ="location.href='catchup_graph2.php'">
+            </div>
+
+
+            <div id="health1"
+            style ="background:url('./image/health.png');
+            background-repeat:no-repeat;
+            background-position: center;
+            background-size: 75px,120px;
+            background-margin-top: 10px;
+            cursor:pointer;
+            margin-top: 10px;"
+            onclick ="location.href='catchup_health.html'">
+            </div>
+
+
+            <div id="setting"
+            style ="background:url('./image/setting.png');
+            background-repeat:no-repeat;
+            background-position: center;
+            background-size: 70px,70px;
+            background-margin-top: 5px;
+            background-margin-left: 10px;
+            margin-top: 7px;
+            cursor:pointer;"
+            onclick ="location.href='catchup_setting.html'">
+            </div> 
+            
+         
+      </div>
+
+      <br>
+      <br>
+      
+      
+
+
+</center>      
+</body>
+</html>
